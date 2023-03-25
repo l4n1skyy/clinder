@@ -1,7 +1,9 @@
 from __future__ import print_function
 
 import datetime
+import zoneinfo
 import os.path
+import sys
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -14,11 +16,9 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 
 def main():
-    """Shows basic usage of the Google Calendar API.
-    Prints the start and name of the next 10 events on the user's calendar.
-    """
     check_credentials()
-
+    id = "d2afd35591cb7e8070e99086aa586dadbf45911d3ee5ac86999375c1b35718e6@group.calendar.google.com"
+    # id = input("calendar id: ")
 
 def check_credentials():
     creds = None
@@ -36,20 +36,39 @@ def check_credentials():
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
     try:
+        global service
         service = build('calendar', 'v3', credentials=creds)
 
     except HttpError as error:
         print('An error occurred: %s' % error)
-        exit()
+        sys.exit()
 
     print("authentication successful")
+    return
+
+def read_event():
+    return
+
+# Convert timestamp to google calendar timestamp format
+def convert_dt(id, dt):
+    try:
+        timezone = service.calendars().get(calendarId=id).execute()["timeZone"]
+        dt = datetime.datetime.strptime(dt,"%Y-%m-%d %H:%M:%S").replace(tzinfo=zoneinfo.ZoneInfo(timezone))
+        dt = dt.strftime("%Y-%m-%dT%H:%M:%S%z")
+
+    except Exception as e:
+        print(e)
+        dt = None
+
+    return(dt)
+
 
 def create_event():
     return
-def read_event():
-    return
+
 def update_event():
     return
+
 def delete_event():
     return
 
