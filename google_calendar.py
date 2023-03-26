@@ -17,9 +17,13 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 def main():
     check_credentials()
-    id = "d2afd35591cb7e8070e99086aa586dadbf45911d3ee5ac86999375c1b35718e6@group.calendar.google.com"
-    # id = input("calendar id: ")
 
+    # id = input("calendar id: ")
+    id = "6c82977aa7912c1e788a88f97946dede7dc51b7bb5b169b08e5fbb57ce9027f0@group.calendar.google.com"
+
+    read_event(id)
+
+# Check credentials and initialize service variable
 def check_credentials():
     creds = None
     if os.path.exists('token.json'):
@@ -41,27 +45,69 @@ def check_credentials():
 
     except HttpError as error:
         print('An error occurred: %s' % error)
-        sys.exit()
-
+        return
+    
     print("authentication successful")
     return
 
-def read_event():
-    return
-
 # Convert timestamp to google calendar timestamp format
-def convert_dt(id, dt):
-    try:
-        timezone = service.calendars().get(calendarId=id).execute()["timeZone"]
-        dt = datetime.datetime.strptime(dt,"%Y-%m-%d %H:%M:%S").replace(tzinfo=zoneinfo.ZoneInfo(timezone))
-        dt = dt.strftime("%Y-%m-%dT%H:%M:%S%z")
+def convert_dt(id, dt, mode):
+    # Convert timestamp to google calendar timestamp format
+    if mode == 1:
+        try:
+            timezone = service.calendars().get(calendarId=id).execute()["timeZone"]
+            dt = datetime.datetime.strptime(dt,"%Y-%m-%d %H:%M").replace(tzinfo=zoneinfo.ZoneInfo(timezone))
+            dt = dt.strftime("%Y-%m-%dT%H:%M:00%z")
+        except Exception as e:
+            return None
+        return(dt)
 
-    except Exception as e:
-        print(e)
-        dt = None
+    # Convert google calendar timestamp format to timestamp
+    elif mode == 2:
+        try:
+            dt = datetime.datetime.strptime(dt,"%Y-%m-%dT%H:%M:00%z")
+            dt = dt.strftime("%d-%m-%Y, %I:%M %p")
+        except Exception as e:
+            return None
+        return(dt)
+        
 
-    return(dt)
 
+def read_event(id):
+    while True:
+        timeMin = convert_dt(id, input("Input minimum time [YYYY-MM-DD HH:MM]: "), 1)
+
+        if timeMin == None:
+            print("error, try again")
+        else:
+            break
+         
+    while True:
+        timeMax = convert_dt(id, input("Input maximum time [YYYY-MM-DD HH:MM]: "), 1)
+
+        if timeMax == None:
+            print("error, try again")
+        else:
+            break
+
+        
+    events_result = service.events().list(calendarId=id, timeMin=timeMin, timeMax=timeMax, singleEvents=True, orderBy='startTime').execute()
+    events = events_result.get('items', [])
+
+    if not events:
+        print('No upcoming events found.')
+        return
+
+    print ("        start        |         end          | summary")
+    print ("-----------------------------------------------------")
+    for event in events:
+        start = event['start'].get('dateTime', event['start'].get('date'))
+        start = convert_dt(id, start, 2)
+        end = event['end'].get('dateTime', event['end'].get('date'))
+        end = convert_dt(id, end, 2)
+        print(start, "|", end, "|", event['summary'])
+
+    return
 
 def create_event():
     return
