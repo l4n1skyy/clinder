@@ -56,7 +56,7 @@ def convert_dt(id, dt, mode):
     if mode == 1:
         try:
             timezone = service.calendars().get(calendarId=id).execute()["timeZone"]
-            dt = datetime.datetime.strptime(dt,"%Y-%m-%d %H:%M").replace(tzinfo=zoneinfo.ZoneInfo(timezone))
+            dt = datetime.datetime.strptime(dt,"%d-%m-%Y %I:%M %p").replace(tzinfo=zoneinfo.ZoneInfo(timezone))
             dt = dt.strftime("%Y-%m-%dT%H:%M:00%z")
         except Exception as e:
             return None
@@ -75,7 +75,7 @@ def convert_dt(id, dt, mode):
 
 def read_event(id):
     while True:
-        timeMin = convert_dt(id, input("Input minimum time [YYYY-MM-DD HH:MM]: "), 1)
+        timeMin = convert_dt(id, input("Input minimum time [DD-MM-YYYY HH:MM AM/PM]: "), 1)
 
         if timeMin == None:
             print("error, try again")
@@ -83,7 +83,7 @@ def read_event(id):
             break
          
     while True:
-        timeMax = convert_dt(id, input("Input maximum time [YYYY-MM-DD HH:MM]: "), 1)
+        timeMax = convert_dt(id, input("Input maximum time [DD-MM-YYYY HH:MM AM/PM]: "), 1)
 
         if timeMax == None:
             print("error, try again")
