@@ -167,10 +167,6 @@ def read_event(id):
     return
 
 def create_event(id):
-
-    # summary, location, description /
-    # attendees, reminders, recurrence x
-
     timeZone = service.calendars().get(calendarId=id).execute()["timeZone"]
     start = convert_dt(id, input("Input start time [DD-MM-YYYY HH:MM AM/PM]: "), 1)
     end = convert_dt(id, input("Input end time [DD-MM-YYYY HH:MM AM/PM]: "), 1)
