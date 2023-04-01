@@ -10,8 +10,11 @@ There are four basic commands to this program
 
 ### - Create
 Events can be created, with fields
+
 :white_check_mark: summary (aka title), location, description
+
 :x: recurrence, attendees, reminders
+
 ![create](images/create.png)
 
 ### - Read
