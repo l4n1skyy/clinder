@@ -17,7 +17,7 @@ Events can be created, with fields
 
 ![create](images/create.png)
 
-### - Read
+### 1) Read
 There are a few different filters and method of displaying events:
 
 1. display events within specific time range
@@ -29,11 +29,11 @@ There are a few different filters and method of displaying events:
 3. display events with a specific title (aka summary)
 ![read_summary](images/read_summary.png)
 
-### - Update
+### 2) Update
 The summary, description and location of an event can be updated, one at a time
 ![update](images/update.png)
 
-### - Delete
+### 3) Delete
 Events can be deleted in bulk
 ![delete](images/delete.png)
 
