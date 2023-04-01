@@ -1,4 +1,5 @@
 # Clinder
+### Video Demo: https://www.youtube.com/watch?v=4HdLoAgK4PY
 
 ## Description:
 Clinder is a command line interface for google calendar, which uses the google calendar api. Clinder can be an alternative to the google calendar website which is more interactive and visual which might make it slower. Clinder can also be convenient to those who work on the command line often and find it troublesome switching between tabs.
