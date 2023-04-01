@@ -8,7 +8,7 @@ Clinder is a command line interface for google calendar, which uses the google c
 ## Functionality:
 There are four basic commands to this program
 
-### - Create
+### 1) Create
 Events can be created, with fields
 
 :white_check_mark: summary (aka title), location, description
@@ -17,7 +17,7 @@ Events can be created, with fields
 
 ![create](images/create.png)
 
-### 1) Read
+### 2) Read
 There are a few different filters and method of displaying events:
 
 1. display events within specific time range
@@ -29,11 +29,11 @@ There are a few different filters and method of displaying events:
 3. display events with a specific title (aka summary)
 ![read_summary](images/read_summary.png)
 
-### 2) Update
+### 3) Update
 The summary, description and location of an event can be updated, one at a time
 ![update](images/update.png)
 
-### 3) Delete
+### 4) Delete
 Events can be deleted in bulk
 ![delete](images/delete.png)
 
