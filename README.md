@@ -35,7 +35,7 @@ There are four basic operations in this program, which is to create events, read
 ### 1) Create
 Events can be created, with fields
 
-:white_check_mark: summary (aka title), location, description
+:white_check_mark: summary (aka title), location, description, time (today/tomorrow/specific time range)
 
 :x: recurrence, attendees, reminders
 
