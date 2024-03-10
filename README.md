@@ -8,7 +8,6 @@
 Clinder is a command line interface for google calendar, which uses the google calendar api. Clinder can be an alternative to the google calendar website which is more interactive and visual which might make it slower. Clinder can also be convenient to those who work on the command line often and find it troublesome switching between windows.
 
 ## Installation:
-https://developers.google.com/calendar/api/quickstart/python
 1. Create a Google Cloud project
    1. https://console.cloud.google.com/projectcreate
 2. Enable Google Calendar API
