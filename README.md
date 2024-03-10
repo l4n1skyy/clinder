@@ -1,4 +1,8 @@
 # Clinder
+### Contents:
+1. [Description](https://github.com/l4n1skyy/clinder/edit/main/README.md#description-1)
+2. [Installation](https://github.com/l4n1skyy/clinder/edit/main/README.md#installation-1)
+3. [Functionality](https://github.com/l4n1skyy/clinder/edit/main/README.md#functionality-1)
 
 ## Description:
 Clinder is a command line interface for google calendar, which uses the google calendar api. Clinder can be an alternative to the google calendar website which is more interactive and visual which might make it slower. Clinder can also be convenient to those who work on the command line often and find it troublesome switching between windows.
